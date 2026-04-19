@@ -1,0 +1,18 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+allure-results/
+allure-report/
+
+# Auth session files — these contain cookies and tokens, never commit them
+playwright/.auth/*.json
+
+# Environment files — these contain passwords, never commit them
+config/.env.local
+config/.env.staging
+config/.env.production
+config/.env
+
+# Keep the example file so students know what fields are needed
+!config/.env.example
