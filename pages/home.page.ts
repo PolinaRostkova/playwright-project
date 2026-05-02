@@ -17,6 +17,24 @@ export class HomePage extends BasePage {
     this.profileButton = page.getByRole('menuitem', { name: 'Profile' })
   }
 
+  // ── Navigation ────────────────────────────────────────────────────────
+  async navigateTo(linkName: string): Promise<void> {
+    const navLinks = this.page.getByRole('listbox').getByRole('link')
+    const count = await navLinks.count()
+
+    for (let i = 0; i < count; i++) {
+      const link = navLinks.nth(i)
+      const text = await link.textContent()
+
+      if (text?.trim().toLowerCase() === linkName.toLowerCase()) {
+        await link.click()
+        return
+      }
+    }
+
+    throw new Error(`Nav link "${linkName}" not found`)
+  }
+
   // ── Actions ───────────────────────────────────────────────────────────
   async openUserMenu(): Promise<void> {
 
